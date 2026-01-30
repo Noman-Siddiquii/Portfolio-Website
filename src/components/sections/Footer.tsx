@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { personalInfo } from "@/data";
-import { FaHeart, FaGithub, FaLinkedin, FaEnvelope, FaArrowUp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaArrowUp } from "react-icons/fa";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -131,13 +131,10 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           viewport={{ once: true }}
-          className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4"
+          className="pt-8 border-t border-white/10 flex items-center justify-center"
         >
           <p className="text-white-200/50 text-sm">
             © {currentYear} {personalInfo.name}. All rights reserved.
-          </p>
-          <p className="text-white-200/50 text-sm flex items-center gap-1">
-            Crafted with <FaHeart className="text-primary w-3 h-3 mx-1" /> using Next.js & Tailwind
           </p>
         </motion.div>
       </div>

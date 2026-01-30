@@ -184,10 +184,10 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
-              className="flex flex-wrap gap-4 justify-center lg:justify-start mb-10"
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10"
             >
               <MagneticWrapper strength={0.2}>
-                <a href="#projects">
+                <a href="#projects" className="block">
                   <MagicButton
                     title="View My Work"
                     icon={<FaLocationArrow />}
@@ -196,8 +196,8 @@ export default function Hero() {
                 </a>
               </MagneticWrapper>
               <MagneticWrapper strength={0.2}>
-                <a href="#contact">
-                  <button className="px-6 py-3 rounded-lg border border-white/20 text-white-100 font-medium hover:bg-white/5 hover:border-primary/50 transition-all duration-300 flex items-center gap-2 hover:scale-105">
+                <a href="#contact" className="block">
+                  <button className="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-black-200/80 backdrop-blur-sm border border-white/30 text-white-100 font-medium hover:bg-primary/20 hover:border-primary transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105 shadow-lg">
                     <FaCalendarAlt className="text-primary" />
                     Schedule a Call
                   </button>
