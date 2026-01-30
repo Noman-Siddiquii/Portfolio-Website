@@ -2,7 +2,6 @@
 
 import { navItems } from "@/data";
 import { FloatingNav } from "@/components/ui/FloatingNav";
-import LoadingScreen from "@/components/ui/LoadingScreen";
 import CustomCursor from "@/components/ui/CustomCursor";
 import Hero from "@/components/sections/HeroNew";
 import About from "@/components/sections/AboutNew";
@@ -16,7 +15,6 @@ import Footer from "@/components/sections/Footer";
 export default function Home() {
   return (
     <>
-      <LoadingScreen />
       <CustomCursor />
       <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-clip mx-auto">
         <div className="w-full">

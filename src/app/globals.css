@@ -224,6 +224,169 @@ body {
   pointer-events: none;
 }
 
+/* Smooth scroll reveal animation */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+/* Magnetic button effect */
+.magnetic-btn {
+  transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Gradient border animation */
+@keyframes border-gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animated-border {
+  background: linear-gradient(90deg, #6366f1, #22d3ee, #6366f1);
+  background-size: 200% 100%;
+  animation: border-gradient 3s ease infinite;
+}
+
+/* Parallax smooth transition */
+.parallax-smooth {
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+/* Globe glow effect */
+@keyframes globe-glow {
+  0%, 100% {
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 80px rgba(99, 102, 241, 0.5);
+  }
+}
+
+.globe-glow {
+  animation: globe-glow 4s ease-in-out infinite;
+}
+
+/* Smooth fade in */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+/* Scale in animation */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-in {
+  animation: scale-in 0.4s ease-out forwards;
+}
+
+/* Blur in animation */
+@keyframes blur-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.blur-in {
+  animation: blur-in 0.6s ease-out forwards;
+}
+
+/* Stagger delay utilities */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Hover lift effect */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+}
+
+/* Text gradient animation */
+@keyframes text-gradient {
+  0%, 100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+.animated-text-gradient {
+  background: linear-gradient(90deg, #6366f1, #22d3ee, #6366f1);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: text-gradient 4s linear infinite;
+}
+
+/* Smooth scrollbar for sections */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Slow pulse for background orbs - CSS only, no JS */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.15;
+    transform: scale(1.05);
+  }
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

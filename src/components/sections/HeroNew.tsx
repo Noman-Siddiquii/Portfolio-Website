@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { FaLocationArrow, FaCalendarAlt } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import MagicButton from "@/components/ui/MagicButton";
 import { Spotlight } from "@/components/ui/Spotlight";
 import ProfilePhoto from "@/components/ui/ProfilePhoto";
-import { GradientOrbs, Particles } from "@/components/ui/FloatingElements";
+import AnimatedBackground from "@/components/ui/AnimatedBackground";
+import MagneticWrapper from "@/components/ui/MagneticButton";
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import { personalInfo } from "@/data";
 
 const roles = [
@@ -60,47 +62,39 @@ function TypewriterText() {
   );
 }
 
-// Stats counter animation
-function AnimatedStat({ value, label, suffix = "" }: { value: number; label: string; suffix?: string }) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    const duration = 2000;
-    const steps = 60;
-    const stepValue = value / steps;
-    let current = 0;
-
-    const timer = setInterval(() => {
-      current += stepValue;
-      if (current >= value) {
-        setCount(value);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
-    }, duration / steps);
-
-    return () => clearInterval(timer);
-  }, [value]);
-
+// Stats counter - now using AnimatedCounter component
+function StatItem({ value, label, suffix = "" }: { value: number; label: string; suffix?: string }) {
   return (
-    <div className="text-center">
-      <div className="text-2xl md:text-3xl font-bold gradient-text">
-        {count}{suffix}
-      </div>
-      <div className="text-xs md:text-sm text-white-200/60">{label}</div>
+    <div className="text-center group">
+      <AnimatedCounter
+        value={value}
+        suffix={suffix}
+        duration={2.5}
+        className="text-2xl md:text-3xl font-bold gradient-text"
+      />
+      <div className="text-xs md:text-sm text-white-200/60 group-hover:text-white-200/80 transition-colors">{label}</div>
     </div>
   );
 }
 
 export default function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+  
+  // Parallax effects
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-black-100">
-        <GradientOrbs />
-        <Particles />
-      </div>
+    <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Animated Background */}
+      <motion.div className="absolute inset-0" style={{ y: backgroundY }}>
+        <AnimatedBackground />
+      </motion.div>
 
       {/* Spotlights */}
       <div className="absolute inset-0">
@@ -120,7 +114,10 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black-100/50 to-black-100" />
 
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-32 pb-20">
+      <motion.div 
+        className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-32 pb-20"
+        style={{ y: textY, opacity }}
+      >
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           {/* Left: Text Content */}
           <motion.div
@@ -182,26 +179,30 @@ export default function Hero() {
               stunning design with robust functionality. Specialized in React, Node.js, and modern web technologies.
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons with Magnetic Effect */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
               className="flex flex-wrap gap-4 justify-center lg:justify-start mb-10"
             >
-              <a href="#projects">
-                <MagicButton
-                  title="View My Work"
-                  icon={<FaLocationArrow />}
-                  position="right"
-                />
-              </a>
-              <a href="#contact">
-                <button className="px-6 py-3 rounded-lg border border-white/20 text-white-100 font-medium hover:bg-white/5 hover:border-primary/50 transition-all duration-300 flex items-center gap-2">
-                  <FaCalendarAlt className="text-primary" />
-                  Schedule a Call
-                </button>
-              </a>
+              <MagneticWrapper strength={0.2}>
+                <a href="#projects">
+                  <MagicButton
+                    title="View My Work"
+                    icon={<FaLocationArrow />}
+                    position="right"
+                  />
+                </a>
+              </MagneticWrapper>
+              <MagneticWrapper strength={0.2}>
+                <a href="#contact">
+                  <button className="px-6 py-3 rounded-lg border border-white/20 text-white-100 font-medium hover:bg-white/5 hover:border-primary/50 transition-all duration-300 flex items-center gap-2 hover:scale-105">
+                    <FaCalendarAlt className="text-primary" />
+                    Schedule a Call
+                  </button>
+                </a>
+              </MagneticWrapper>
             </motion.div>
 
             {/* Stats */}
@@ -211,13 +212,13 @@ export default function Hero() {
               transition={{ delay: 0.8 }}
               className="flex justify-center lg:justify-start gap-8 md:gap-12"
             >
-              <AnimatedStat value={3} label="Years Experience" suffix="+" />
-              <AnimatedStat value={15} label="Projects Completed" suffix="+" />
-              <AnimatedStat value={100} label="Client Satisfaction" suffix="%" />
+              <StatItem value={3} label="Years Experience" suffix="+" />
+              <StatItem value={15} label="Projects Completed" suffix="+" />
+              <StatItem value={100} label="Client Satisfaction" suffix="%" />
             </motion.div>
           </motion.div>
 
-          {/* Right: Profile Photo */}
+          {/* Right: Profile Photo on all devices */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -227,7 +228,7 @@ export default function Hero() {
             <ProfilePhoto />
           </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Scroll Indicator */}
       <motion.div

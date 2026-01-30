@@ -2,6 +2,9 @@
 
 import { motion } from "framer-motion";
 import { skills } from "@/data";
+import ScrollReveal from "@/components/ui/ScrollReveal";
+import ParallaxSection from "@/components/ui/ParallaxSection";
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import {
   IconBrandPython,
   IconBrandJavascript,
@@ -138,33 +141,43 @@ function SkillBar({ category, items, delay }: { category: string; items: { name:
 export default function Skills() {
   return (
     <section id="skills" className="py-24 relative overflow-hidden">
-      {/* Background */}
+      {/* Parallax Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[100px]" />
+        <ParallaxSection speed={0.3}>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[100px]" />
+        </ParallaxSection>
+        <ParallaxSection speed={0.5} className="absolute top-10 right-10">
+          <div className="w-20 h-20 border border-cyan/10 rounded-lg rotate-45" />
+        </ParallaxSection>
+        <ParallaxSection speed={0.7} className="absolute bottom-20 left-20">
+          <div className="w-16 h-16 bg-primary/5 rounded-full" />
+        </ParallaxSection>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-          <motion.span 
-            className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
-            whileHover={{ scale: 1.05 }}
-          >
-            Technical Expertise
-          </motion.span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Technologies I <span className="gradient-text">Work With</span>
-          </h2>
-          <p className="text-white-200/70 max-w-2xl mx-auto text-lg">
-            A comprehensive toolkit for building modern, scalable applications from frontend to backend.
-          </p>
-        </motion.div>
+        {/* Header with Scroll Reveal */}
+        <div className="text-center mb-20">
+          <ScrollReveal animation="fadeUp" delay={0}>
+            <motion.span 
+              className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
+              whileHover={{ scale: 1.05 }}
+            >
+              Technical Expertise
+            </motion.span>
+          </ScrollReveal>
+          
+          <ScrollReveal animation="fadeUp" delay={0.1}>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+              Technologies I <span className="gradient-text">Work With</span>
+            </h2>
+          </ScrollReveal>
+          
+          <ScrollReveal animation="fadeUp" delay={0.2}>
+            <p className="text-white-200/70 max-w-2xl mx-auto text-lg">
+              A comprehensive toolkit for building modern, scalable applications from frontend to backend.
+            </p>
+          </ScrollReveal>
+        </div>
 
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -225,7 +238,7 @@ export default function Skills() {
               delay={0.3} 
             />
 
-            {/* Stats */}
+            {/* Stats with AnimatedCounter */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -233,16 +246,26 @@ export default function Skills() {
               viewport={{ once: true }}
               className="mt-8 grid grid-cols-3 gap-4"
             >
-              {[
-                { label: "Technologies", value: "20+" },
-                { label: "Years Coding", value: "3+" },
-                { label: "Always Learning", value: "∞" },
-              ].map((stat, idx) => (
-                <div key={idx} className="text-center p-4 rounded-xl bg-white/5 border border-white/10">
-                  <div className="text-2xl font-bold gradient-text">{stat.value}</div>
-                  <div className="text-xs text-white-200/60">{stat.label}</div>
-                </div>
-              ))}
+              <div className="text-center p-4 rounded-xl bg-white/5 border border-white/10 hover:border-primary/30 transition-colors">
+                <AnimatedCounter
+                  value={20}
+                  suffix="+"
+                  className="text-2xl font-bold gradient-text"
+                />
+                <div className="text-xs text-white-200/60">Technologies</div>
+              </div>
+              <div className="text-center p-4 rounded-xl bg-white/5 border border-white/10 hover:border-primary/30 transition-colors">
+                <AnimatedCounter
+                  value={3}
+                  suffix="+"
+                  className="text-2xl font-bold gradient-text"
+                />
+                <div className="text-xs text-white-200/60">Years Coding</div>
+              </div>
+              <div className="text-center p-4 rounded-xl bg-white/5 border border-white/10 hover:border-primary/30 transition-colors">
+                <div className="text-2xl font-bold gradient-text">∞</div>
+                <div className="text-xs text-white-200/60">Always Learning</div>
+              </div>
             </motion.div>
           </div>
         </div>

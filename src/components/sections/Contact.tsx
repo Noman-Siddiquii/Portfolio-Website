@@ -5,6 +5,9 @@ import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { personalInfo } from "@/data";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from "react-icons/fa";
+import ScrollReveal from "@/components/ui/ScrollReveal";
+import ParallaxSection from "@/components/ui/ParallaxSection";
+import MagneticWrapper from "@/components/ui/MagneticButton";
 
 // EmailJS Configuration - Read from environment variables
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
@@ -84,34 +87,46 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
-      {/* Background */}
+      {/* Parallax Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/4 w-96 h-96 rounded-full bg-primary/5 blur-[100px]" />
-        <div className="absolute top-1/2 right-1/4 w-96 h-96 rounded-full bg-cyan/5 blur-[100px]" />
+        <ParallaxSection speed={0.4} direction="up">
+          <div className="absolute top-1/2 left-1/4 w-96 h-96 rounded-full bg-primary/5 blur-[100px]" />
+        </ParallaxSection>
+        <ParallaxSection speed={0.5} direction="down">
+          <div className="absolute top-1/2 right-1/4 w-96 h-96 rounded-full bg-cyan/5 blur-[100px]" />
+        </ParallaxSection>
+        <ParallaxSection speed={0.6} className="absolute top-20 right-20">
+          <div className="w-16 h-16 border border-primary/10 rotate-45" />
+        </ParallaxSection>
+        <ParallaxSection speed={0.7} className="absolute bottom-40 left-10">
+          <div className="w-24 h-24 border border-cyan/10 rounded-full" />
+        </ParallaxSection>
       </div>
 
       <div className="relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <motion.span 
-            className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
-            whileHover={{ scale: 1.05 }}
-          >
-            Get In Touch
-          </motion.span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Let&apos;s <span className="gradient-text">Work Together</span>
-          </h2>
-          <p className="text-white-200/70 max-w-2xl mx-auto text-lg">
-            Have a project in mind? Let&apos;s discuss how I can help bring your
-            ideas to life
-          </p>
-        </motion.div>
+        <div className="text-center mb-16">
+          <ScrollReveal animation="fadeUp" delay={0}>
+            <motion.span 
+              className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
+              whileHover={{ scale: 1.05 }}
+            >
+              Get In Touch
+            </motion.span>
+          </ScrollReveal>
+          
+          <ScrollReveal animation="fadeUp" delay={0.1}>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+              Let&apos;s <span className="gradient-text">Work Together</span>
+            </h2>
+          </ScrollReveal>
+          
+          <ScrollReveal animation="fadeUp" delay={0.2}>
+            <p className="text-white-200/70 max-w-2xl mx-auto text-lg">
+              Have a project in mind? Let&apos;s discuss how I can help bring your
+              ideas to life
+            </p>
+          </ScrollReveal>
+        </div>
       </div>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 px-6">

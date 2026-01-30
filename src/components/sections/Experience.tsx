@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { experiences } from "@/data";
 import { FaBriefcase, FaMapMarkerAlt, FaCalendar } from "react-icons/fa";
+import ScrollReveal from "@/components/ui/ScrollReveal";
+import ParallaxSection from "@/components/ui/ParallaxSection";
 
 const TimelineItem = ({
   experience,
@@ -103,34 +105,43 @@ const TimelineItem = ({
 export default function Experience() {
   return (
     <section id="experience" className="py-24 relative overflow-hidden">
-      {/* Background */}
+      {/* Parallax Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 -left-48 w-96 h-96 rounded-full bg-primary/5 blur-[100px]" />
-        <div className="absolute bottom-1/3 -right-48 w-96 h-96 rounded-full bg-cyan/5 blur-[100px]" />
+        <ParallaxSection speed={0.4} direction="up">
+          <div className="absolute top-1/3 -left-48 w-96 h-96 rounded-full bg-primary/5 blur-[100px]" />
+        </ParallaxSection>
+        <ParallaxSection speed={0.5} direction="down">
+          <div className="absolute bottom-1/3 -right-48 w-96 h-96 rounded-full bg-cyan/5 blur-[100px]" />
+        </ParallaxSection>
+        <ParallaxSection speed={0.6} className="absolute top-20 left-10">
+          <div className="w-24 h-24 border border-primary/10 rounded-full" />
+        </ParallaxSection>
       </div>
 
       <div className="max-w-4xl mx-auto px-6 relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <motion.span 
-            className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
-            whileHover={{ scale: 1.05 }}
-          >
-            Career Journey
-          </motion.span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Professional <span className="gradient-text">Experience</span>
-          </h2>
-          <p className="text-white-200/70 max-w-2xl mx-auto text-lg">
-            A track record of delivering results and growing expertise in full-stack development.
-          </p>
-        </motion.div>
+        {/* Header with Scroll Reveal */}
+        <div className="text-center mb-16">
+          <ScrollReveal animation="fadeUp" delay={0}>
+            <motion.span 
+              className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
+              whileHover={{ scale: 1.05 }}
+            >
+              Career Journey
+            </motion.span>
+          </ScrollReveal>
+          
+          <ScrollReveal animation="fadeUp" delay={0.1}>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+              Professional <span className="gradient-text">Experience</span>
+            </h2>
+          </ScrollReveal>
+          
+          <ScrollReveal animation="fadeUp" delay={0.2}>
+            <p className="text-white-200/70 max-w-2xl mx-auto text-lg">
+              A track record of delivering results and growing expertise in full-stack development.
+            </p>
+          </ScrollReveal>
+        </div>
 
         {/* Timeline */}
         <div className="relative">

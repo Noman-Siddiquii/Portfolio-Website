@@ -1,118 +1,98 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
 
-export default function CustomCursor() {
-  const [isVisible, setIsVisible] = useState(false);
+const CustomCursor = () => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
-  const [isClicking, setIsClicking] = useState(false);
-
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
-
-  const springConfig = { damping: 25, stiffness: 700 };
-  const cursorXSpring = useSpring(cursorX, springConfig);
-  const cursorYSpring = useSpring(cursorY, springConfig);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
-    // Check if we're on a device with a mouse
-    const hasMouse = window.matchMedia("(hover: hover)").matches;
-    if (!hasMouse) return;
+    // Check if mobile/touch device - disable cursor on mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024 || 'ontouchstart' in window);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
 
-    const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
+    if (isMobile) return;
+
+    let animationId: number;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
       setIsVisible(true);
     };
 
-    const handleMouseDown = () => setIsClicking(true);
-    const handleMouseUp = () => setIsClicking(false);
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
 
-    const handleMouseEnter = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        target.tagName === "A" ||
-        target.tagName === "BUTTON" ||
-        target.closest("a") ||
-        target.closest("button") ||
-        target.classList.contains("cursor-pointer")
-      ) {
-        setIsHovering(true);
-      }
+    // Smooth animation loop with lerp - more performant
+    const animate = () => {
+      currentX += (targetX - currentX) * 0.15;
+      currentY += (targetY - currentY) * 0.15;
+      setPosition({ x: currentX, y: currentY });
+      animationId = requestAnimationFrame(animate);
     };
 
-    const handleMouseLeave = () => {
-      setIsHovering(false);
+    // Hover detection
+    const handleHoverStart = () => setIsHovering(true);
+    const handleHoverEnd = () => setIsHovering(false);
+
+    const addHoverListeners = () => {
+      const hoverables = document.querySelectorAll('a, button, [data-hoverable]');
+      hoverables.forEach(el => {
+        el.addEventListener('mouseenter', handleHoverStart);
+        el.addEventListener('mouseleave', handleHoverEnd);
+      });
+      return hoverables;
     };
 
-    window.addEventListener("mousemove", moveCursor);
-    window.addEventListener("mousedown", handleMouseDown);
-    window.addEventListener("mouseup", handleMouseUp);
-    document.addEventListener("mouseover", handleMouseEnter);
-    document.addEventListener("mouseout", handleMouseLeave);
+    document.addEventListener('mousemove', handleMouseMove, { passive: true });
+    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mouseenter', handleMouseEnter);
+    
+    const hoverables = addHoverListeners();
+    animationId = requestAnimationFrame(animate);
 
     return () => {
-      window.removeEventListener("mousemove", moveCursor);
-      window.removeEventListener("mousedown", handleMouseDown);
-      window.removeEventListener("mouseup", handleMouseUp);
-      document.removeEventListener("mouseover", handleMouseEnter);
-      document.removeEventListener("mouseout", handleMouseLeave);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mouseenter', handleMouseEnter);
+      cancelAnimationFrame(animationId);
+      hoverables.forEach(el => {
+        el.removeEventListener('mouseenter', handleHoverStart);
+        el.removeEventListener('mouseleave', handleHoverEnd);
+      });
+      window.removeEventListener('resize', checkMobile);
     };
-  }, [cursorX, cursorY]);
+  }, [isMobile]);
 
-  if (!isVisible) return null;
+  // Don't render on mobile or when not visible
+  if (isMobile || !isVisible) return null;
 
   return (
-    <>
-      {/* Main cursor dot */}
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
-        style={{
-          x: cursorXSpring,
-          y: cursorYSpring,
-        }}
-      >
-        <motion.div
-          animate={{
-            scale: isClicking ? 0.8 : isHovering ? 1.5 : 1,
-          }}
-          transition={{ duration: 0.15 }}
-          className="relative -translate-x-1/2 -translate-y-1/2"
-        >
-          <div
-            className={`w-3 h-3 rounded-full bg-white transition-all duration-200 ${
-              isHovering ? "opacity-0" : "opacity-100"
-            }`}
-          />
-        </motion.div>
-      </motion.div>
-
-      {/* Outer ring */}
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9998]"
-        style={{
-          x: cursorXSpring,
-          y: cursorYSpring,
-        }}
-      >
-        <motion.div
-          animate={{
-            scale: isClicking ? 0.9 : isHovering ? 1.8 : 1,
-            opacity: isHovering ? 1 : 0.5,
-          }}
-          transition={{ duration: 0.2 }}
-          className="relative -translate-x-1/2 -translate-y-1/2"
-        >
-          <div
-            className={`w-8 h-8 rounded-full border-2 transition-all duration-200 ${
-              isHovering
-                ? "border-primary bg-primary/20"
-                : "border-white/30 bg-transparent"
-            }`}
-          />
-        </motion.div>
-      </motion.div>
-    </>
+    <div
+      className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
+      style={{
+        transform: `translate(${position.x - 10}px, ${position.y - 10}px)`,
+        willChange: 'transform',
+      }}
+    >
+      <div 
+        className={`rounded-full bg-white transition-transform duration-150 ${
+          isHovering ? 'w-12 h-12 -ml-3 -mt-3' : 'w-5 h-5'
+        }`}
+      />
+    </div>
   );
-}
+};
+
+export default CustomCursor;
