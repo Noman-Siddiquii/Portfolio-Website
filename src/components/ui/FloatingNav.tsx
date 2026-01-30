@@ -27,9 +27,7 @@ export function FloatingNav({
       
       if (scrollYProgress.get() < 0.05) {
         setVisible(true);
-        setIsScrolled(false);
       } else {
-        setIsScrolled(true);
         if (direction < 0) {
           setVisible(true);
         } else {
