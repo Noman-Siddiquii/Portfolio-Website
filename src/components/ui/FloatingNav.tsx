@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -20,7 +20,6 @@ export function FloatingNav({
 }) {
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
-  const [isScrolled, setIsScrolled] = useState(false);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     if (typeof current === "number") {

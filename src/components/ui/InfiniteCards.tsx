@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 
 export function InfiniteMovingCards({
   items,
@@ -27,6 +26,7 @@ export function InfiniteMovingCards({
 
   useEffect(() => {
     addAnimation();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [start, setStart] = useState(false);

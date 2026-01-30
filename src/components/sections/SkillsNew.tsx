@@ -17,11 +17,8 @@ import {
   IconBrandGit,
   IconDatabase,
   IconBrandAws,
-  IconBrain,
   IconCode,
   IconBrandMongodb,
-  IconBrandHtml5,
-  IconBrandCss3,
 } from "@tabler/icons-react";
 import { SiExpress, SiFastapi, SiGraphql, SiRedis, SiFirebase, SiVercel } from "react-icons/si";
 

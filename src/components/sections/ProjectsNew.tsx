@@ -6,7 +6,6 @@ import { projects } from "@/data";
 import { FaExternalLinkAlt, FaGithub, FaArrowRight } from "react-icons/fa";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import ParallaxSection from "@/components/ui/ParallaxSection";
-import MagneticWrapper from "@/components/ui/MagneticButton";
 
 // 3D Tilt Card Effect
 function ProjectCard({

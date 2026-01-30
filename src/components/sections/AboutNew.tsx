@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import ScrollReveal, { StaggerReveal, LineReveal } from "@/components/ui/ScrollReveal";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import ParallaxSection from "@/components/ui/ParallaxSection";
 import MagneticWrapper from "@/components/ui/MagneticButton";
 import { 
@@ -105,8 +105,8 @@ export default function About() {
     offset: ["start end", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  // const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  // const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
     <section id="about" className="py-24 relative overflow-hidden" ref={containerRef}>

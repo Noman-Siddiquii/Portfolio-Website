@@ -65,13 +65,13 @@ const SkillCard = ({
 };
 
 export default function Skills() {
-  const allSkills = [
-    ...skills.languages,
-    ...skills.frameworks,
-    ...skills.databases,
-    ...skills.tools,
-    ...skills.ai,
-  ];
+  // const allSkills = [
+  //   ...skills.languages,
+  //   ...skills.frameworks,
+  //   ...skills.databases,
+  //   ...skills.tools,
+  //   ...skills.ai,
+  // ];
 
   return (
     <section id="skills" className="py-20">

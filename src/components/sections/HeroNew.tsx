@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { FaLocationArrow, FaCalendarAlt } from "react-icons/fa";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import MagicButton from "@/components/ui/MagicButton";
 import { Spotlight } from "@/components/ui/Spotlight";
 import ProfilePhoto from "@/components/ui/ProfilePhoto";
