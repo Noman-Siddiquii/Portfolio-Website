@@ -83,27 +83,38 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        className="text-center mb-16"
-      >
-        <p className="text-primary uppercase tracking-widest text-sm mb-4">
-          Get In Touch
-        </p>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-          Let&apos;s <span className="gradient-text">Work Together</span>
-        </h2>
-        <p className="text-white-200/70 mt-4 max-w-2xl mx-auto">
-          Have a project in mind? Let&apos;s discuss how I can help bring your
-          ideas to life
-        </p>
-      </motion.div>
+    <section id="contact" className="py-24 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/4 w-96 h-96 rounded-full bg-primary/5 blur-[100px]" />
+        <div className="absolute top-1/2 right-1/4 w-96 h-96 rounded-full bg-cyan/5 blur-[100px]" />
+      </div>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <motion.span 
+            className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
+            whileHover={{ scale: 1.05 }}
+          >
+            Get In Touch
+          </motion.span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+            Let&apos;s <span className="gradient-text">Work Together</span>
+          </h2>
+          <p className="text-white-200/70 max-w-2xl mx-auto text-lg">
+            Have a project in mind? Let&apos;s discuss how I can help bring your
+            ideas to life
+          </p>
+        </motion.div>
+      </div>
+
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 px-6">
         {/* Contact Info */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
