@@ -21,19 +21,27 @@ export default function MagicButton({
 }: MagicButtonProps) {
   return (
     <motion.button
-      whileHover={{ scale: 1.02 }}
+      whileHover={{ scale: 1.02, y: -2 }}
       whileTap={{ scale: 0.98 }}
       onClick={handleClick}
       className={cn(
-        "relative inline-flex h-12 w-full md:w-60 overflow-hidden rounded-lg p-[1px] focus:outline-none",
+        "relative inline-flex h-12 w-full md:w-60 overflow-hidden rounded-lg p-[1px] focus:outline-none group",
         otherClasses
       )}
     >
       <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#6366f1_0%,#22d3ee_50%,#6366f1_100%)]" />
-      <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-black-100 px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2">
+      
+      {/* Glow effect on hover */}
+      <span className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl bg-gradient-to-r from-primary to-cyan" />
+      
+      <span className="relative inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-black-100 px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2 group-hover:bg-black-100/90 transition-colors">
         {position === "left" && icon}
         {title}
-        {position === "right" && icon}
+        {position === "right" && (
+          <span className="group-hover:translate-x-1 transition-transform duration-300">
+            {icon}
+          </span>
+        )}
       </span>
     </motion.button>
   );

@@ -131,9 +131,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-primary/30 mb-6 float-badge glow-border"
             >
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+              </span>
               <span className="text-sm text-white-200">Available for Freelance Work</span>
             </motion.div>
 
@@ -155,7 +158,7 @@ export default function Hero() {
               className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4"
             >
               <span className="text-white-100">{personalInfo.name.split(' ')[0]}</span>{' '}
-              <span className="gradient-text">{personalInfo.name.split(' ')[1]}</span>
+              <span className="gradient-text text-glow">{personalInfo.name.split(' ')[1]}</span>
             </motion.h1>
 
             {/* Typewriter Role */}
@@ -192,12 +195,13 @@ export default function Hero() {
                     title="View My Work"
                     icon={<FaLocationArrow />}
                     position="right"
+                    otherClasses="btn-glow"
                   />
                 </a>
               </MagneticWrapper>
               <MagneticWrapper strength={0.2}>
                 <a href="#contact" className="block">
-                  <button className="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-black-200/80 backdrop-blur-sm border border-white/30 text-white-100 font-medium hover:bg-primary/20 hover:border-primary transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105 shadow-lg">
+                  <button className="w-full sm:w-auto px-6 py-3.5 rounded-lg glass-card border border-white/20 text-white-100 font-medium hover:border-primary/50 transition-all duration-300 flex items-center justify-center gap-2 btn-glow">
                     <FaCalendarAlt className="text-primary" />
                     Schedule a Call
                   </button>

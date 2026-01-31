@@ -65,7 +65,7 @@ function ProjectCard({
       className="relative group perspective-1000"
     >
       <div
-        className="relative h-full rounded-2xl bg-gradient-to-br from-black-200 to-black-100 border border-white/[0.08] overflow-hidden"
+        className="relative h-full rounded-2xl glass-card border border-white/[0.08] overflow-hidden card-shine glow-border"
         style={{ transformStyle: "preserve-3d" }}
       >
         {/* Shine effect on hover */}
@@ -153,13 +153,13 @@ function ProjectCard({
             {project.technologies.slice(0, 4).map((tech, idx) => (
               <span
                 key={idx}
-                className="px-3 py-1 text-xs rounded-full bg-white/5 text-white-200/80 border border-white/10"
+                className="px-3 py-1 text-xs rounded-full bg-white/5 text-white-200/80 border border-white/10 hover:border-primary/30 hover:bg-primary/5 transition-all"
               >
                 {tech}
               </span>
             ))}
             {project.technologies.length > 4 && (
-              <span className="px-3 py-1 text-xs rounded-full bg-primary/10 text-primary border border-primary/20">
+              <span className="px-3 py-1 text-xs rounded-full bg-primary/10 text-primary border border-primary/20 glow-hover">
                 +{project.technologies.length - 4} more
               </span>
             )}
@@ -170,10 +170,11 @@ function ProjectCard({
             href={project.liveUrl || project.githubUrl || "#"}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all"
+            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all group/link"
+            whileHover={{ x: 3 }}
           >
             View Project
-            <FaArrowRight className="w-3 h-3" />
+            <FaArrowRight className="w-3 h-3 group-hover/link:translate-x-1 transition-transform" />
           </motion.a>
         </div>
 
@@ -218,7 +219,7 @@ export default function Projects() {
           
           <ScrollReveal animation="fadeUp" delay={0.1}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              Projects That <span className="gradient-text">Deliver Results</span>
+              Projects That <span className="gradient-text text-glow">Deliver Results</span>
             </h2>
           </ScrollReveal>
           

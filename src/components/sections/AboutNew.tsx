@@ -64,7 +64,7 @@ function FeatureCard({ feature, index }: { feature: typeof features[0]; index: n
       className="group relative"
     >
       {/* Card */}
-      <div className="relative h-full p-6 rounded-2xl bg-gradient-to-br from-black-200/80 to-black-100/80 border border-white/[0.08] backdrop-blur-sm overflow-hidden">
+      <div className="relative h-full p-6 rounded-2xl glass-card border border-white/[0.08] overflow-hidden card-shine glow-border">
         {/* Hover gradient overlay */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
           <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-5`} />
@@ -76,7 +76,7 @@ function FeatureCard({ feature, index }: { feature: typeof features[0]; index: n
         {/* Content */}
         <div className="relative z-10">
           {/* Icon */}
-          <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${feature.gradient} mb-4`}>
+          <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${feature.gradient} mb-4 skill-icon-glow`}>
             <feature.icon className="w-6 h-6 text-white" />
           </div>
 
@@ -140,7 +140,7 @@ export default function About() {
           
           <ScrollReveal animation="fadeUp" delay={0.1}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              What I <span className="gradient-text">Bring to the Table</span>
+              What I <span className="gradient-text text-glow">Bring to the Table</span>
             </h2>
           </ScrollReveal>
           

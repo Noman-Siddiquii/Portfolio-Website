@@ -3,6 +3,7 @@
 import { navItems } from "@/data";
 import { FloatingNav } from "@/components/ui/FloatingNav";
 import CustomCursor from "@/components/ui/CustomCursor";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 import Hero from "@/components/sections/HeroNew";
 import About from "@/components/sections/AboutNew";
 import Skills from "@/components/sections/SkillsNew";
@@ -16,7 +17,8 @@ export default function Home() {
   return (
     <>
       <CustomCursor />
-      <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-clip mx-auto">
+      <ScrollProgress />
+      <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-clip mx-auto particles-bg">
         <div className="w-full">
           <FloatingNav navItems={navItems} />
           <Hero />

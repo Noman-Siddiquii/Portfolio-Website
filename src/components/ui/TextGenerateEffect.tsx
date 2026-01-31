@@ -29,7 +29,7 @@ export function TextGenerateEffect({
         duration: duration,
         delay: stagger(0.1),
       }
-    ).then(() => setIsComplete(true));
+    );
   }, [scope, animate, duration, filter]);
 
   const renderWords = () => {

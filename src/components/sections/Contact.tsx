@@ -114,7 +114,7 @@ export default function Contact() {
           
           <ScrollReveal animation="fadeUp" delay={0.1}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              Let&apos;s <span className="gradient-text">Work Together</span>
+              Let&apos;s <span className="gradient-text text-glow">Work Together</span>
             </h2>
           </ScrollReveal>
           
@@ -156,7 +156,7 @@ export default function Contact() {
                 viewport={{ once: true }}
                 className="flex items-center gap-4 group"
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-cyan/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 rounded-xl glass-card flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 glow-hover">
                   {info.icon}
                 </div>
                 <div>
@@ -213,7 +213,7 @@ export default function Contact() {
         >
           <form
             onSubmit={handleSubmit}
-            className="p-8 rounded-2xl border border-white/[0.1] bg-gradient-to-br from-black-200 to-black-100"
+            className="p-8 rounded-2xl border border-white/[0.1] glass-card"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
               <div>
@@ -230,7 +230,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-black-300 border border-white/10 text-white-100 placeholder-white-200/30 focus:outline-none focus:border-primary transition-colors duration-200"
+                  className="w-full px-4 py-3 rounded-xl bg-black-300 border border-white/10 text-white-100 placeholder-white-200/30 focus:outline-none focus:border-primary input-glow transition-all duration-200"
                   placeholder="John Doe"
                 />
               </div>
@@ -248,7 +248,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-black-300 border border-white/10 text-white-100 placeholder-white-200/30 focus:outline-none focus:border-primary transition-colors duration-200"
+                  className="w-full px-4 py-3 rounded-xl bg-black-300 border border-white/10 text-white-100 placeholder-white-200/30 focus:outline-none focus:border-primary input-glow transition-all duration-200"
                   placeholder="john@example.com"
                 />
               </div>
@@ -268,7 +268,7 @@ export default function Contact() {
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-xl bg-black-300 border border-white/10 text-white-100 placeholder-white-200/30 focus:outline-none focus:border-primary transition-colors duration-200"
+                className="w-full px-4 py-3 rounded-xl bg-black-300 border border-white/10 text-white-100 placeholder-white-200/30 focus:outline-none focus:border-primary input-glow transition-all duration-200"
                 placeholder="Project Inquiry"
               />
             </div>
@@ -287,7 +287,7 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 rows={5}
-                className="w-full px-4 py-3 rounded-xl bg-black-300 border border-white/10 text-white-100 placeholder-white-200/30 focus:outline-none focus:border-primary transition-colors duration-200 resize-none"
+                className="w-full px-4 py-3 rounded-xl bg-black-300 border border-white/10 text-white-100 placeholder-white-200/30 focus:outline-none focus:border-primary input-glow transition-all duration-200 resize-none"
                 placeholder="Tell me about your project..."
               />
             </div>

@@ -49,7 +49,7 @@ export default function Footer() {
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white-200/70 hover:text-primary hover:border-primary/50 transition-all duration-300"
+                className="w-11 h-11 rounded-xl glass-card flex items-center justify-center text-white-200/70 hover:text-primary hover:border-primary/50 transition-all duration-300 glow-hover"
               >
                 <FaGithub className="w-5 h-5" />
               </motion.a>
@@ -58,14 +58,14 @@ export default function Footer() {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white-200/70 hover:text-primary hover:border-primary/50 transition-all duration-300"
+                className="w-11 h-11 rounded-xl glass-card flex items-center justify-center text-white-200/70 hover:text-primary hover:border-primary/50 transition-all duration-300 glow-hover"
               >
                 <FaLinkedin className="w-5 h-5" />
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.1, y: -2 }}
                 href={`mailto:${personalInfo.email}`}
-                className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white-200/70 hover:text-primary hover:border-primary/50 transition-all duration-300"
+                className="w-11 h-11 rounded-xl glass-card flex items-center justify-center text-white-200/70 hover:text-primary hover:border-primary/50 transition-all duration-300 glow-hover"
               >
                 <FaEnvelope className="w-5 h-5" />
               </motion.a>
@@ -144,9 +144,10 @@ export default function Footer() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         onClick={scrollToTop}
-        whileHover={{ scale: 1.1 }}
+        whileHover={{ scale: 1.1, y: -3 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-br from-primary to-cyan flex items-center justify-center text-white shadow-lg shadow-primary/30 z-50"
+        className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-br from-primary to-cyan flex items-center justify-center text-white shadow-lg z-50 btn-glow"
+        style={{ boxShadow: "0 0 20px rgba(99, 102, 241, 0.4)" }}
       >
         <FaArrowUp className="w-4 h-4" />
       </motion.button>

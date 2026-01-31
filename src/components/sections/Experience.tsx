@@ -40,7 +40,7 @@ const TimelineItem = ({
         transition={{ duration: 0.2 }}
         className="flex-1 pb-12"
       >
-        <div className="p-6 rounded-2xl bg-gradient-to-br from-black-200/80 to-black-100/80 border border-white/[0.08] hover:border-primary/30 transition-all duration-300 backdrop-blur-sm">
+        <div className="p-6 rounded-2xl glass-card border border-white/[0.08] hover:border-primary/30 transition-all duration-300 card-shine glow-border">
           {/* Header */}
           <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
             <div>
@@ -132,7 +132,7 @@ export default function Experience() {
           
           <ScrollReveal animation="fadeUp" delay={0.1}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              Professional <span className="gradient-text">Experience</span>
+              Professional <span className="gradient-text text-glow">Experience</span>
             </h2>
           </ScrollReveal>
           

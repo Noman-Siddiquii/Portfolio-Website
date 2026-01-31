@@ -87,7 +87,7 @@ function OrbitingSkill({ skill, index, total }: { skill: SkillItem; index: numbe
           <motion.div
             animate={{ rotate: -360 }}
             transition={{ duration, repeat: Infinity, ease: "linear" }}
-            className="relative p-3 rounded-xl bg-black-200/80 backdrop-blur-sm border border-white/10 hover:border-primary/50 transition-all cursor-pointer"
+            className="relative p-3 rounded-xl glass-card border border-white/10 hover:border-primary/50 transition-all cursor-pointer skill-icon-glow"
             style={{
               boxShadow: `0 0 20px ${skill.color}20`,
             }}
@@ -125,7 +125,7 @@ function SkillBar({ category, items, delay }: { category: string; items: { name:
             transition={{ delay: delay + idx * 0.05 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.1, y: -3 }}
-            className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white-200 text-sm hover:border-primary/50 hover:bg-primary/10 transition-all cursor-default"
+            className="px-4 py-2 rounded-lg glass-card border border-white/10 text-white-200 text-sm hover:border-primary/50 hover:bg-primary/10 transition-all cursor-default glow-hover"
           >
             {item.name}
           </motion.span>
@@ -165,7 +165,7 @@ export default function Skills() {
           
           <ScrollReveal animation="fadeUp" delay={0.1}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              Technologies I <span className="gradient-text">Work With</span>
+              Technologies I <span className="gradient-text text-glow">Work With</span>
             </h2>
           </ScrollReveal>
           

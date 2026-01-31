@@ -43,7 +43,7 @@ export default function Testimonials() {
           
           <ScrollReveal animation="fadeUp" delay={0.1}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              What <span className="gradient-text">Clients Say</span>
+              What <span className="gradient-text text-glow">Clients Say</span>
             </h2>
           </ScrollReveal>
           
