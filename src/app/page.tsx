@@ -24,10 +24,20 @@ export default function Home() {
           <Hero />
           <div className="max-w-7xl mx-auto px-5 sm:px-10">
             <About />
+            {/* Section Divider */}
+            <div className="section-divider" />
             <Skills />
+            {/* Section Divider */}
+            <div className="section-divider" />
             <Experience />
+            {/* Section Divider */}
+            <div className="section-divider" />
             <Projects />
+            {/* Section Divider */}
+            <div className="section-divider" />
             <Testimonials />
+            {/* Section Divider */}
+            <div className="section-divider" />
             <Contact />
           </div>
           <Footer />

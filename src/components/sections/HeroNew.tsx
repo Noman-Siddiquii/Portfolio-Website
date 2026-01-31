@@ -126,20 +126,6 @@ export default function Hero() {
             transition={{ duration: 0.8 }}
             className="order-2 lg:order-1 text-center lg:text-left"
           >
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-primary/30 mb-6 float-badge glow-border"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
-              </span>
-              <span className="text-sm text-white-200">Available for Freelance Work</span>
-            </motion.div>
-
             {/* Greeting */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}

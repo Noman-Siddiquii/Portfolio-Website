@@ -20,7 +20,10 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative py-16 border-t border-white/10 bg-gradient-to-b from-transparent to-black-100/50">
+    <footer className="relative py-16 bg-gradient-to-b from-transparent to-black-100/50">
+      {/* Gradient top border line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      
       {/* Background gradient */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-96 bg-gradient-to-t from-primary/5 to-transparent" />
@@ -43,29 +46,32 @@ export default function Footer() {
               Full Stack Developer passionate about creating exceptional digital experiences. 
               Available for freelance projects and collaborations.
             </p>
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               <motion.a
-                whileHover={{ scale: 1.1, y: -2 }}
+                whileHover={{ scale: 1.15, y: -3 }}
+                whileTap={{ scale: 0.95 }}
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-xl glass-card flex items-center justify-center text-white-200/70 hover:text-primary hover:border-primary/50 transition-all duration-300 glow-hover"
+                className="w-12 h-12 rounded-xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10 flex items-center justify-center text-white-200/70 hover:text-white hover:border-primary/50 hover:shadow-[0_0_25px_rgba(99,102,241,0.4)] transition-all duration-300"
               >
                 <FaGithub className="w-5 h-5" />
               </motion.a>
               <motion.a
-                whileHover={{ scale: 1.1, y: -2 }}
+                whileHover={{ scale: 1.15, y: -3 }}
+                whileTap={{ scale: 0.95 }}
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-xl glass-card flex items-center justify-center text-white-200/70 hover:text-primary hover:border-primary/50 transition-all duration-300 glow-hover"
+                className="w-12 h-12 rounded-xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10 flex items-center justify-center text-white-200/70 hover:text-[#0A66C2] hover:border-[#0A66C2]/50 hover:shadow-[0_0_25px_rgba(10,102,194,0.4)] transition-all duration-300"
               >
                 <FaLinkedin className="w-5 h-5" />
               </motion.a>
               <motion.a
-                whileHover={{ scale: 1.1, y: -2 }}
+                whileHover={{ scale: 1.15, y: -3 }}
+                whileTap={{ scale: 0.95 }}
                 href={`mailto:${personalInfo.email}`}
-                className="w-11 h-11 rounded-xl glass-card flex items-center justify-center text-white-200/70 hover:text-primary hover:border-primary/50 transition-all duration-300 glow-hover"
+                className="w-12 h-12 rounded-xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10 flex items-center justify-center text-white-200/70 hover:text-cyan hover:border-cyan/50 hover:shadow-[0_0_25px_rgba(34,211,238,0.4)] transition-all duration-300"
               >
                 <FaEnvelope className="w-5 h-5" />
               </motion.a>
